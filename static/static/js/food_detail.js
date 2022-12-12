@@ -1,7 +1,6 @@
 window.onload = () => {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
-    console.log(payload_parse.nickname)
 
     const intro = document.getElementById("intro")
     intro.innerText = `${payload_parse.nickname}님 안녕하세요!`
@@ -22,10 +21,10 @@ window.onload = () => {
 }
 
 
-function handdleLogout() {
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("payload")
-//    location.reload()
+window.onload = async function loadFooddetail(food_id) {
+    food = await getFooddetail()
+    console.log(food)
 }
+
+
 
