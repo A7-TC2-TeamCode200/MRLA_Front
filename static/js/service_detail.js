@@ -2,6 +2,8 @@ if (!token) {
   window.location.replace(`${frontend_base_url}/signin_signup.html`);
 }
 
+setTimeout(handleLogout(), 3600);
+
 // url id 값 받아오기
 const urlParams = new URLSearchParams(window.location.search);
 const service_id = urlParams.get("id");

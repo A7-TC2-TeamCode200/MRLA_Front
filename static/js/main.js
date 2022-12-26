@@ -3,6 +3,9 @@ if (!token) {
 
 }
 
+
+setTimeout(handleLogout(), 3600);
+
 // url id 값 받아오기
 const urlParams = new URLSearchParams(window.location.search);
 const category_id = urlParams.get("id");

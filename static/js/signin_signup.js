@@ -2,6 +2,8 @@ if (token) {
   window.location.replace(`${frontend_base_url}/main.html`);
 }
 
+
+
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
 const container = document.getElementById("container");
@@ -85,6 +87,13 @@ async function handleSignIn() {
     alert("아이디, 비밀번호를 확인하세요!");
   }
 
+}
+
+function enterkey_SignIn() {
+    if (window.event.keyCode == 13) {
+
+         handleSignIn();
+    }
 }
 
 // async function handleMock() {
@@ -227,4 +236,11 @@ async function handleSignUp() {
     window.location.reload();
   }
 
+}
+
+function enterkey_SignUp() {
+    if (window.event.keyCode == 13) {
+
+         handleSignUp();
+    }
 }

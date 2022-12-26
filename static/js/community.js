@@ -2,6 +2,8 @@ if (!token) {
   window.location.replace(`${frontend_base_url}/signin_signup.html`);
 }
 
+setTimeout(handleLogout(), 3600);
+
 // 전체 페이지 로딩이 완료될 때까지 기다림====================================================221207 이태은
 window.addEventListener("load", function () {
   // 실제 페이지 로드의 지연을 시뮬레이트하기 위한 setTimeout
