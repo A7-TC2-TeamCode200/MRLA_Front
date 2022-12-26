@@ -86,14 +86,14 @@ async function loadgetServiceComment(service_id) {
     const newService = document.createElement("span");
     newService.setAttribute("id", servicecomment.service);
     newService.setAttribute("class", "servicecomment_user");
-    newService.innerText = "admin";
+    newService.innerText = "고객센터";
     comment_list.appendChild(newService);
 
-    const newCreatedAt = document.createElement("span");
-    newCreatedAt.setAttribute("id", servicecomment.service);
-    newCreatedAt.setAttribute("class", "servicecomment_created_at");
-    newCreatedAt.innerText = servicecomment.created_at.replace("T", " ").substr(0, 16);
-    comment_list.appendChild(newCreatedAt);
+    const newUpdatedat = document.createElement("span");
+    newUpdatedat.setAttribute("id", servicecomment.service);
+    newUpdatedat.setAttribute("class", "servicecomment_updated_at");
+    newUpdatedat.innerText = servicecomment.updated_at.replace("T", " ").substr(0, 16);
+    comment_list.appendChild(newUpdatedat);
 
     const newComment = document.createElement("p");
     newComment.setAttribute("id", servicecomment.service);

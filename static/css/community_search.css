@@ -3,14 +3,12 @@
   font-family: "Jua", sans-serif;
   text-align: center;
   margin: auto;
+  
 }
-body {
-  display: grid;
-  align-content: space-between;
-  height: 100vh;
+body{
+  overflow: hidden;
 }
-
-/* 헤더============================================ */
+/* 헤더=============================================*/
 header {
   background-color: #fed049;
   width: 100%;
@@ -23,6 +21,13 @@ header {
   top: 0;
 }
 
+h2 {
+  margin: 0 5px 0 0;
+}
+.mascot {
+  width: 55px;
+  height: 60px;
+}
 .header_small_box {
   display: flex;
   flex-direction: row;
@@ -66,16 +71,18 @@ header {
 
 /* 네비게이션============================================= */
 .nav_box {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 top: 70px;
   position: fixed;
   width: 100%;
+  z-index: 100;
 
 }
 
 .navContainer {
+  padding: 5px;
   background-color: white;
-  border: 10px solid #FED049;
+  border: 10px solid #fed049;
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -89,13 +96,12 @@ top: 70px;
 }
 
 .near_restaurant {
-  border: solid 3px grey;
   border-radius: 100px;
   float: left;
   width: 20%;
   box-sizing: border-box;
   text-decoration-line: none;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -108,13 +114,12 @@ top: 70px;
 }
 
 .who {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -126,13 +131,12 @@ top: 70px;
 }
 
 .community {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -144,13 +148,12 @@ top: 70px;
 }
 
 .service {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -171,7 +174,6 @@ nav a {
   text-decoration-line: none;
   color: grey;
 }
-
 
 section {
   /* border: 2px solid green; */
@@ -210,6 +212,7 @@ a.active {
   width: 90vw;
   height: 65vh;
   margin: auto;
+  margin-top: 140px;
 }
 
 div.search_field {
@@ -220,7 +223,7 @@ div.search_field {
   margin: 0;
 }
 
-span.search_span {
+.search_span {
   cursor: pointer;
   width: 230px;
   margin: 10px 15px;
@@ -242,4 +245,6 @@ span {
 footer {
   background-color: gray;
   width: 100%;
+  position: absolute;
+  bottom: 0px;
 }

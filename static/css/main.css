@@ -4,7 +4,9 @@
   text-align: center;
   margin: auto;
 }
-
+body {
+  overflow: hidden;
+}
 /* 헤더=============================================*/
 header {
   background-color: #fed049;
@@ -18,6 +20,10 @@ header {
   top: 0;
 }
 
+header h2{
+  margin-bottom: 0px;
+
+}
 .header_small_box {
   display: flex;
   flex-direction: row;
@@ -61,14 +67,17 @@ header {
 
 /* 네비게이션============================================= */
 .nav_box {
-  border: 1px solid red;
-top: 70px;
+  /* border: 1px solid red; */
+  top: 70px;
   position: fixed;
   width: 100%;
-
+  z-index: 100;
 }
-
+.nav_box .material-symbols-outlined{
+  font-size: 2vw;
+}
 .navContainer {
+  padding: 5px;
   background-color: white;
   border: 10px solid #fed049;
   align-items: center;
@@ -84,13 +93,12 @@ top: 70px;
 }
 
 .near_restaurant {
-  border: solid 3px grey;
   border-radius: 100px;
   float: left;
   width: 20%;
   box-sizing: border-box;
   text-decoration-line: none;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -103,13 +111,12 @@ top: 70px;
 }
 
 .who {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -121,13 +128,12 @@ top: 70px;
 }
 
 .community {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -139,13 +145,12 @@ top: 70px;
 }
 
 .service {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -160,7 +165,6 @@ ul {
   list-style: none;
   padding-left: 0px;
 }
-
 
 nav a {
   text-decoration-line: none;
@@ -204,18 +208,33 @@ a.active {
 /* 내용 섹션 윗칸 ============================================= 221205 이태은 */
 .recommend_food_img_section {
   background-color: white;
-  height: 500px;
+  height: 45vh;
   z-index: -100;
+  position: relative;
+}
+.slide_change_button{
+  position: absolute;
+  top: 10px;
+  width: 100vw;
+}
+.clickleft{
+font-size: 1vw;
+}
+.clickright{
+  font-size: 1vw;
 }
 
 /* 추천 맛집 라운드 슬라이드==========================================221205 이태은 */
 .slide_title {
-  font-size: 24px;
+  font-size: 2vw;
   color: #ff5752;
 }
 
+
+
 .slide a {
   text-decoration: none;
+  font-size: 1vw;
 }
 
 img {
@@ -371,12 +390,12 @@ img {
 /* 내용 섹션 아래칸 ============================================= 221205 이태은 */
 .sns_famous_restaurant_section {
   background-color: rgb(255, 174, 205);
-  height: 250px;
+  height: 30vh;
 }
 
 /* 유명 맛집 스크롤 css ================================ 221205 이태은*/
 #sns_famous_restaurant_container {
-  height: 100%;
+  height: 32vh;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -410,8 +429,8 @@ img {
   top: calc(50% - 30px);
   height: 30px;
   width: 30px;
-  border-left: 8px solid rgb(43, 42, 42);
-  border-top: 8px solid rgb(43, 42, 42);
+  border-left: 8px solid rgb(112, 64, 0);
+  border-top: 8px solid rgb(112, 64, 0);
 }
 
 #sns_slider-container .btn:hover {
@@ -450,7 +469,7 @@ img {
 
 #sns_slider-container #slider .slide span {
   color: rgb(7, 7, 7);
-  font-size: 50px;
+  font-size: 3vw;
 }
 
 @media only screen and (min-width: 1100px) {
@@ -478,11 +497,38 @@ img {
 }
 
 /* 바닥글 윗칸 ============================================= 221205 이태은 */
- footer {
-  height: 100%;
-  line-height: 55px;
-  background-color: gray;
+footer {
   width: 100%;
-  position: relative;
-  bottom: 0;
- }
+  height: 90px;
+  bottom: 0px;
+  position: absolute;
+  border-top: 1px solid #c4c4c4;
+  padding: 5px;
+  color: #ffffff;
+  font-size: 11px;
+  background-color: #5c5c5c;
+  z-index: -100;
+}
+footer nav {
+  margin-top: 5px;
+}
+footer a {
+  display: inline-block;
+  margin: 0 20px 10px 20px;
+  color: #ffffff;
+  font-size: 11px;
+}
+
+footer a:visited {
+  color: #a9b2fd;
+}
+
+footer p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+footer p span {
+  display: inline-block;
+  margin-left: 20px;
+}

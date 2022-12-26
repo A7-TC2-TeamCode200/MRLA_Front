@@ -3,8 +3,12 @@
   font-family: "Jua", sans-serif;
   text-align: center;
   margin: auto;
+  
 }
-
+body{
+  overflow: hidden;
+  min-width: 50vw;
+}
 /* 헤더=============================================*/
 header {
   background-color: #fed049;
@@ -18,6 +22,13 @@ header {
   top: 0;
 }
 
+h2 {
+  margin: 0 5px 0 0;
+}
+.mascot {
+  width: 55px;
+  height: 60px;
+}
 .header_small_box {
   display: flex;
   flex-direction: row;
@@ -59,17 +70,18 @@ header {
   cursor: pointer;
 }
 
-
 /* 네비게이션============================================= */
 .nav_box {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 top: 70px;
   position: fixed;
   width: 100%;
+  z-index: 100;
 
 }
 
 .navContainer {
+  padding: 5px;
   background-color: white;
   border: 10px solid #fed049;
   align-items: center;
@@ -85,13 +97,12 @@ top: 70px;
 }
 
 .near_restaurant {
-  border: solid 3px grey;
   border-radius: 100px;
   float: left;
   width: 20%;
   box-sizing: border-box;
   text-decoration-line: none;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -104,13 +115,12 @@ top: 70px;
 }
 
 .who {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -122,13 +132,12 @@ top: 70px;
 }
 
 .community {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -140,13 +149,12 @@ top: 70px;
 }
 
 .service {
-  border: 3px solid grey;
   border-radius: 100px;
   float: left;
   margin-left: 5%;
   width: 20%;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -172,6 +180,7 @@ section {
   /* border: 2px solid green; */
   height: 100%;
 }
+
 
 .menu {
   position: relative;
@@ -227,16 +236,16 @@ button:hover + p.arrow_box {
 
 .target {
   width: 90px;
-  height: 126px;
+  height: 100px;
   background: #ffc000;
   display: block;
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  border: solid 2px rgb(91, 89, 85);
+  border: none;
   align-items: center;
   justify-content: center;
   font-size: 20px;
   margin: 10px 20px;
-  background-color: blanchedalmond;
+  background-color: rgb(252, 244, 198);
 }
 
 .target_foods {
@@ -249,6 +258,7 @@ button:hover + p.arrow_box {
   width: 95vw;
   height: 65vh;
   padding: 30px;
+  border-radius: 10px;
   background-color: rgb(248, 248, 236);
   border: solid 5px #FED049;
   overflow: overlay;

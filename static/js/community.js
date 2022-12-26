@@ -133,12 +133,25 @@ fileDOM.addEventListener("change", () => {
   reader.readAsDataURL(fileDOM.files[0]);
 });
 
+//제목 텍스트 수 제한 textarea
+$(".post-modal-input-text-top input").keyup(function () {
+  var content = $(this).val();
+  $(".post-modal-input-text-top .title-count span").html(content.length);
+  if (content.length > 15) {
+    alert("제목은 최대 15자까지 입력 가능합니다.");
+    $(this).val(content.substring(0, 15));
+    $(".post-modal-input-text-top .title-count span").html(15);
+  }
+});
+
+
+
 // 텍스트 수 제한 textarea
 $(".text_box textarea").keyup(function () {
   var content = $(this).val();
   $(".text_box .count span").html(content.length);
   if (content.length > 200) {
-    alert("최대 200자까지 입력 가능합니다.");
+    alert("내용은 최대 200자까지 입력 가능합니다.");
     $(this).val(content.substring(0, 200));
     $(".text_box .count span").html(200);
   }
@@ -302,7 +315,7 @@ async function Community() {
     newContent.innerText = community.content;
     newDescription.appendChild(newTitle);
     newDescription.appendChild(newContent);
-
+// 카드생성
     newCard.setAttribute("id", community.id)
     newCard.setAttribute("onclick", "getCommunityDetailPage(this.id)")
 
@@ -311,11 +324,12 @@ async function Community() {
 }
 Community();
 
-// 고객센터 게시글 등록
+// 커뮤니티 게시글 등록
 async function loadpostCommunity() {
   const title = document.getElementById("community_title").value;
   const content = document.getElementById("community_content").value;
   const image = document.getElementById("community_image").files[0];
+  const location = document.getElementById("location").value;
 
   if (title == "") {
     alert("제목을 입력해 주세요!");
@@ -330,6 +344,7 @@ async function loadpostCommunity() {
   formdata.append("title", title);
   formdata.append("content", content);
   formdata.append("image", image);
+  formdata.append("location", location);
 
   postCommunity(formdata);
 }
