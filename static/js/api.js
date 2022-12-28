@@ -1,80 +1,8 @@
 // 전역 변수
-// const backend_base_url = "https://www.mrla.tk";
-// const backend_base_url = "http://3.36.132.172";
-const backend_base_url = "http://127.0.0.1:8000";
-// const frontend_base_url = "";
+const backend_base_url = "https://www.mrla.tk";
+// const backend_base_url = "http://127.0.0.1:8000";
 const frontend_base_url = "http://localhost:5500/templates";
 const token = localStorage.getItem("access");
-
-// 브라우저 종료 시 로그인한 유저의 토큰값 로컬 스토리지에서 삭제 --------------------
-// 유저가 window 사용 시에는 window가 닫힌 것이 아님
-var closing_window = false;
-$(window).on("focus", function () {
-  closing_window = false;
-});
-
-$(window).on("blur", function () {
-  closing_window = true;
-  if (!document.hidden) {
-    // window가 최소화된 것은 닫힌 것이 아님
-    closing_window = false;
-  }
-  $(window).on("resize", function (e) {
-    // window가 최대화된 것은 닫힌 것이 아님
-    closing_window = false;
-  });
-  $(window).off("resize"); // multiple listening 회피
-});
-
-// 유저가 html을 나간다면 window가 닫힌 것으로 간주
-$("html").on("mouseleave", function () {
-  closing_window = true;
-});
-
-// 유저의 마우스가 window 안에 있다면 토큰들을 삭제하지 않음
-$("html").on("mouseenter", function () {
-  closing_window = false;
-});
-
-$(document).on("keydown", function (e) {
-  if (e.keyCode == 91 || e.keyCode == 18) {
-    closing_window = false; // 단축키 ALT+TAB (창 변경)
-  }
-  if (e.keyCode == 116 || (e.ctrlKey && e.keyCode == 82)) {
-    closing_window = false; // 단축키 F5, CTRL+F5, CTRL+R (새로고침)
-  }
-});
-
-// a 링크를 눌렀을 때 토큰값 삭제 방지
-$(document).on("click", "a", function () {
-  closing_window = false;
-});
-
-// 버튼이 다른 페이지로 redirect한다면 토큰값 삭제 방지
-$(document).on("click", "button", function () {
-  closing_window = false;
-});
-
-// submit이나 form 사용 시 토큰값 삭제 방지
-$(document).on("submit", "form", function () {
-  closing_window = false;
-});
-
-// toDoWhenClosing 함수를 통해 window가 닫히면 토큰 관련 값 전부 삭제
-var toDoWhenClosing = function () {
-  localStorage.removeItem("payload");
-  localStorage.removeItem("access");
-  localStorage.removeItem("refresh");
-  return;
-};
-
-// unload(window가 닫히는 이벤트)가 감지되면 closing_window가 true가 되고 토큰 관련 값들 전부 삭제
-window.addEventListener("unload", function (e) {
-  if (closing_window) {
-    toDoWhenClosing();
-  }
-});
-// --------------------------------------------------------------------------------
 
 // 로그아웃
 function handleLogout() {
@@ -157,8 +85,12 @@ async function handleUnregister() {
   localStorage.removeItem("refresh");
   localStorage.removeItem("payload");
 
-  response_json = await response.json();
-  return response_json;
+  if (response.status == 200) {
+    alert("메추리알 서비스를 이용해 주셔서 감사합니다.");
+    window.location.reload();
+  } else {
+    return false;
+  }
 }
 
 // 프로필 수정하기
@@ -220,9 +152,21 @@ async function DoFollow(user_id) {
   }
 }
 
-// 팔로잉/팔로워 리스트 가져오기
-async function getFollowList(user_id) {
-  const response = await fetch(`${backend_base_url}/users/follow/${user_id}`, {
+// 팔로잉 리스트 가져오기
+async function getFollowingList(user_id) {
+  const response = await fetch(`${backend_base_url}/users/following/${user_id}`, {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("access"),
+    },
+    method: "GET",
+  });
+  response_json = await response.json();
+  return response_json;
+}
+
+// 팔로워 리스트 가져오기
+async function getFollowerList(user_id) {
+  const response = await fetch(`${backend_base_url}/users/follower/${user_id}`, {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("access"),
     },
@@ -407,7 +351,7 @@ async function postFoodComment(food_id, newComment) {
     alert("작성 완료!");
     window.location.reload();
   } else if (response.status == 400) {
-    alert("댓글을 작성해 주세요!");
+    alert("댓글을 500자 이하로 작성해주세요.");
   } else {
     alert(response.status);
   }
@@ -534,12 +478,8 @@ async function loadDeleteCommunityDetail(community_id) {
     method: "DELETE",
   });
 
-  if (response.status == 204) {
-    alert("해당 게시글을 삭제합니다.");
-    window.location.replace(`${frontend_base_url}/community.html`);
-  } else {
-    alert(response.status);
-  }
+  response_json = await response.json();
+  return response_json;
 }
 
 // 커뮤니티 게시글 좋아요 등록/취소 //
@@ -683,4 +623,35 @@ async function postCommunity(formdata) {
 function getNearRestaurant(food) {
   const url = `${frontend_base_url}/map_search.html?id=${food}`;
   location.href = url;
+}
+
+// 음식 검색 페이지 연결 //
+async function FoodSearch() {
+  const word = document.getElementById("inputSearch").value;
+  foods = await getFoodSearch();
+
+  var search_food = [];
+  for (var i = 0; i < foods.length; i++) {
+    var key = foods[i];
+    food = key.menu.replace(/\"/gi, "");
+    if (food == word) {
+      search_food.push(key);
+    }
+  }
+  if (search_food[0]) {
+    location.href = `${frontend_base_url}/food_detail.html?id=${search_food[0].food_id}`;
+  } else {
+    alert("검색한 메뉴가 없습니다.")
+    window.location.reload()
+  }
+}
+
+// 음식 검색 //
+async function getFoodSearch() {
+  const response = await fetch(`${backend_base_url}/foods/main/search?` + new URLSearchParams(window.location.search), {
+    method: "GET",
+  });
+
+  response_json = await response.json();
+  return response_json;
 }

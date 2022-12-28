@@ -28,10 +28,12 @@ header {
 h2 {
   margin: 0 5px 0 0;
 }
+
 .mascot {
   width: 55px;
   height: 60px;
 }
+
 .header_small_box {
   display: flex;
   flex-direction: row;
@@ -126,6 +128,30 @@ form {
   margin: 30px 30px 30px 5px;
   display: flex;
   align-items: center;
+}
+
+.modal-body {
+  height: 300px;
+  overflow: auto;
+}
+
+.modal-body li {
+  cursor: pointer;
+  list-style: none;
+}
+
+.modal-body img {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.following-box,
+.follower-box {
+  display: flex;
+  flex-direction: row;
 }
 
 /* 게시글 */
