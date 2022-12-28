@@ -3,7 +3,6 @@ if (token) {
 }
 
 
-
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
 const container = document.getElementById("container");
@@ -225,8 +224,11 @@ async function handleSignUp() {
   const response_json = await response.json();
   for (var key in response_json) {
     alert(response_json[key]);
-    window.location.reload();
+    if (response.status == 201){
+      window.location.reload();
+    }
   }
+
 }
 
 function enterkey_SignUp() {

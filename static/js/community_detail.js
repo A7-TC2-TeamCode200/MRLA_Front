@@ -2,6 +2,8 @@ if (!token) {
   window.location.replace(`${frontend_base_url}/signin_signup.html`);
 }
 
+setTimeout(() => {handleLogout()}, 3600000);
+
 // url id 값 받아오기
 const urlParams = new URLSearchParams(window.location.search);
 const community_id = urlParams.get("id");

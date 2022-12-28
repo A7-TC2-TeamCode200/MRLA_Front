@@ -2,6 +2,8 @@ if (!token) {
   window.location.replace(`${frontend_base_url}/signin_signup.html`);
 }
 
+setTimeout(() => {handleLogout()}, 3600000);
+
 const urlParams = new URLSearchParams(window.location.search);
 const food_id = urlParams.get("id");
 

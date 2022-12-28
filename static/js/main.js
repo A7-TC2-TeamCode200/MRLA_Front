@@ -3,8 +3,7 @@ if (!token) {
 
 }
 
-
-setTimeout(handleLogout(), 3600);
+setTimeout(() => {handleLogout()}, 3600000);
 
 // url id 값 받아오기
 const urlParams = new URLSearchParams(window.location.search);
